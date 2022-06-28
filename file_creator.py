@@ -1,7 +1,15 @@
-from docx import Document #import the library to manipulate the docx
-from docx.shared import Cm #import the lenght unit
-from docx2pdf import convert #import the converter
-from os import chdir,listdir #import OS directory manipulations
+
+#try to get the modules to create files
+try:
+	from docx import Document #import the library to manipulate the docx
+	from docx.shared import Cm #import the lenght unit
+	from docx2pdf import convert #import the converter
+	from os import chdir,listdir #import OS directory manipulations
+except ImportError as error:
+	print(str(error) + " please install.")
+	input("Type any Enter to exit...")
+	exit()
+
 
 #creating document docx
 document = Document()
@@ -21,10 +29,10 @@ name = input("Type the name of the document: ")
 name_docx = name + ".docx"
 
 #path to save the documents
-path_document = input("Type the path of the file: ")
+path_document = input("Type the absolute path of the file: ")
 
 #input of the directory of the imagens to seve in the file
-path_images = input("Type the path to the images: ")
+path_images = input("Type the absolute path to the images: ")
 print() #just to have another break row
 
 #try to go to the directory of the pictures and save the documents to the specified path
@@ -56,3 +64,5 @@ try:
 #if something goes wrong
 except:
 	print("Impossible to create document!")
+	input("Type any Enter to exit...")
+	exit()
