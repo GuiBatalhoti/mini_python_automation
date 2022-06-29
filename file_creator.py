@@ -1,14 +1,16 @@
-
 #try to get the modules to create files
+from msilib.schema import Error
+
+
 try:
 	from docx import Document #import the library to manipulate the docx
 	from docx.shared import Cm #import the lenght unit
 	from docx2pdf import convert #import the converter
-	from os import chdir,listdir #import OS directory manipulations
+	from os import chdir,listdir,getcwd #import OS directory manipulations
 except ImportError as error:
 	print(str(error) + " please install.")
-	input("Type any Enter to exit...")
-	exit()
+	input("Type Enter to exit...")
+	exit(None)
 
 
 #creating document docx
@@ -56,7 +58,8 @@ try:
 	print("Docx created!")
 
 	#alterating the name with path to save the PDF
-	name_pdf = path_document + "\\" + name + ".pdf"
+	name_pdf = getcwd() + "\\" + name + ".pdf"
+
 	#convert docx to pdf
 	convert(name_docx, name_pdf)
 	print("PDF created!")
@@ -64,5 +67,5 @@ try:
 #if something goes wrong
 except:
 	print("Impossible to create document!")
-	input("Type any Enter to exit...")
+	input("Type Enter to exit...")
 	exit()
